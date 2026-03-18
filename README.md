@@ -1,6 +1,7 @@
 # 📡 DSP Sandbox — Signal-Oriented Computing with RCA
 
 **Author:** Gavin Walters
+
 **Purpose:** Practical exploration of Digital Signal Processing (DSP) concepts through systems-oriented programming and RCA (Runtime Cell Architecture)
 
 ---
