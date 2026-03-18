@@ -14,10 +14,11 @@ use std::fmt::write;
 use crate::rca::{ 
     DataPlane, 
 };
+use crate::signals::samples::give_simulated_sample;
 
 /* Status: MUTABLE */
 #[allow(unused)]
-pub const CELLS: usize = 2;
+pub const CELLS: usize = 1;
 
 /*******************************************************************************
  * (1) Cell Data 
@@ -34,6 +35,7 @@ pub enum CellData {
     None,
     Byte(u8), 
     // Add cell data types here
+    F64(f64),
 }
 
 impl Default for CellData {
@@ -85,7 +87,7 @@ impl Cell {
 #[derive(Debug)]
 pub enum Task {
     Default,
-    DoubleValue,
+    GetSinSample,
     // Add tasks here
 }
 
@@ -99,18 +101,9 @@ impl Task {
                 Ok(transform)
             }
 
-            Task::DoubleValue => {
-                match _handoff {
-                    CellData::Byte(x) => {
-                        let result = x + x;
-                        let transform = CellData::Byte(result); // 84
-                        Ok(transform)
-                    }
-
-                    _ => {
-                        Ok(_handoff)
-                    }
-                }
+            Task::GetSinSample => {
+                let sample = CellData::F64(give_simulated_sample(1.0, 1.0));
+                Ok(sample)
             }
 
             // Add task procedures here
@@ -119,16 +112,3 @@ impl Task {
 
     }
 }
-
-#[cfg(test)]
-mod tests {
-
-    #[allow(unused)]
-    use super::*;
-
-    #[test]
-    fn smoke_test() {
-        assert!(true);
-    }
-
-} 

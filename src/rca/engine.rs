@@ -86,8 +86,7 @@ impl PrimaryRunner for Engine {
         let mut current_thread = ProgramThread::build_tasks(
             None,
             Some([ 
-                Cell { id: 0, task: Task::Default },
-                Cell { id: 1, task: Task::DoubleValue },
+                Cell { id: 1, task: Task::GetSinSample },
             ]),
             None,
         );
@@ -148,3 +147,16 @@ impl MyAppRunner for Engine {
     ...
 }
 */
+
+#[cfg(test)]
+mod tests {
+
+    #[allow(unused)]
+    use super::*;
+
+    #[test]
+    fn smoke_test() {
+        assert!(true);
+    }
+
+} 
