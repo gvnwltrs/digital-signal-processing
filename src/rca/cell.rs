@@ -102,7 +102,7 @@ impl Task {
             }
 
             Task::GetSinSample => {
-                let sample = CellData::F64(give_simulated_sample(1.0, 1.0));
+                let sample = CellData::F64(give_simulated_sample(1.0, 200.0));
                 Ok(sample)
             }
 
