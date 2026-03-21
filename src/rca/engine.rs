@@ -87,6 +87,7 @@ impl PrimaryRunner for Engine {
             None,
             Some([ 
                 Cell { id: 1, task: Task::GetSinSample },
+                Cell { id: 2, task: Task::TakeQuantizedSample },
             ]),
             None,
         );

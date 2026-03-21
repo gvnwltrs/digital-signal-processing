@@ -14,11 +14,9 @@ use std::fmt::write;
 use crate::rca::{ 
     DataPlane, 
 };
-use crate::signals::samples::give_simulated_sample;
+use crate::signals::samples::*;
+use crate::signals::quantization::*;
 
-/* Status: MUTABLE */
-#[allow(unused)]
-pub const CELLS: usize = 1;
 
 /*******************************************************************************
  * (1) Cell Data 
@@ -36,6 +34,7 @@ pub enum CellData {
     Byte(u8), 
     // Add cell data types here
     F64(f64),
+    I64(i64),
 }
 
 impl Default for CellData {
@@ -84,10 +83,15 @@ impl Cell {
  */
 
 /* Status: MUTABLE */
+#[allow(unused)]
+pub const CELLS: usize = 2;
+
+/* Status: MUTABLE */
 #[derive(Debug)]
 pub enum Task {
     Default,
     GetSinSample,
+    TakeQuantizedSample,
     // Add tasks here
 }
 
@@ -102,8 +106,19 @@ impl Task {
             }
 
             Task::GetSinSample => {
-                let sample = CellData::F64(give_simulated_sample(1.0, 200.0));
-                Ok(sample)
+                // Ok(CellData::F64(give_simulated_sample(1.0, 200.0)))
+                Ok(CellData::F64(give_simulated_sample(0.0, 0.0)))
+            }
+
+            Task::TakeQuantizedSample => {
+                match _handoff {
+                    CellData::F64(sample) => {
+                        let sample = CellData::I64(quantize_sample(sample, 32));
+                        Ok(sample)
+                    }
+
+                    _ => Ok(CellData::None)
+                }
             }
 
             // Add task procedures here

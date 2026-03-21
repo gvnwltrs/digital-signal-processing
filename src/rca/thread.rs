@@ -13,6 +13,8 @@ use crate::rca::{
  * (1) Threads 
 ******************************************************************************/
 
+/* NOTE: Should not need to modify often unless adding threads. */
+
 /* Status: MUTABLE */
 #[allow(unused)]
 pub const THREADS: usize = 1;
