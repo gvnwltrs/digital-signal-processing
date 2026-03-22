@@ -266,12 +266,20 @@ The goal is clarity through building.
 
 ---
 
-## 13. License
+## 13. Dependencies
+
+'''
+sudo apt install python3-numpy python3-matplotlib
+'''
+
+---
+
+## 14. License
 
 TBD
 
 ---
 
-## 14. Closing Thought
+## 15. Closing Thought
 
 > If data is a signal, then software is a waveform in motion.
