@@ -68,16 +68,16 @@ impl PrimaryRunner for Engine {
 
 
     fn access_initializing_status(&self) {
-        println!("\n>>>\nControl: {:#?}\n\nData: {:#?}\n<<<\n\n", self.ctl, self.ctx);
+        println!("\n+++ State:\nControl          = {:#?}\n\nData          = {:#?}\n\n\n", self.ctl, self.ctx);
     }
 
     fn access_running_status(&self, efx: &CellData) {
-        println!("\n>>>\nControl: {:#?}\n\nEffect: {:#?}\n\nData: {:#?}\n<<<\n\n", self.ctl, efx, self.ctx);
+        println!("\n+++ State:\nControl         = {:#?}\n\nData         = {:#?}\n\nEffect     = {:#?}\n\n\n", self.ctl, self.ctx, efx);
     }
 
     // TODO: Modify to be more relevant to shutdown details. 
     fn access_shutdown_status(&self) {
-        println!("\n>>>\nControl: {:#?}\n\nData: {:#?}\n<<<\n\n", self.ctl, self.ctx);
+        println!("\n+++ State:\nControl         = {:#?}\n\nData          = {:#?}\n\n\n", self.ctl, self.ctx);
     }
 
     fn try_run_engine(&mut self) -> Result<(), Error> {
