@@ -106,14 +106,13 @@ impl Task {
             }
 
             Task::GetSinSample => {
-                // Ok(CellData::F64(give_simulated_sample(1.0, 200.0)))
-                Ok(CellData::F64(give_simulated_sample(0.0, 0.0)))
+                Ok(CellData::F64(give_simulated_sample(0.0, 1.0)))
             }
 
             Task::TakeQuantizedSample => {
                 match _handoff {
                     CellData::F64(sample) => {
-                        let sample = CellData::I64(quantize_sample(sample, 32));
+                        let sample = CellData::I64(quantize_sample(sample, 16));
                         Ok(sample)
                     }
 

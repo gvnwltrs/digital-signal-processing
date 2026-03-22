@@ -1,18 +1,12 @@
 
 pub fn quantize_sample(sample: f64, bits: u64) -> i64 {
-     // 1. Clamp to [0.0, 1.0]
-    let sample = sample.clamp(0.0, 1.0);
+    let levels = (1u64 << bits) as f64;
 
-    // 1 << bits can easily overflow u64 if bits > 63
-    let levels = (1u64 << bits) as f64; 
-    
-    // Scale the sample from [-1.0, 1.0] to [0.0, 1.0]
-    let normalized = (sample + 1.0) / 2.0;
-    
-    // Scale to the number of levels and cast to u64
-    // Use .round() if you want the nearest level instead of floor/truncation
+    // Normalize from [-1, 1] → [0, 1]
+    let normalized = ((sample + 1.0) / 2.0).clamp(0.0, 1.0);
+
+    // Quantize
     (normalized * (levels - 1.0)).round() as i64
-    // (sample * levels as f64).round() as i64
 }
 
 /* Test Pairs (configure for sine sample generation)
