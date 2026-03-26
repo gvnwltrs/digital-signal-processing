@@ -106,7 +106,7 @@ impl Task {
             }
 
             Task::GetSinSample => {
-                Ok(CellData::F64(give_simulated_sample(0.0, 1.0)))
+                Ok(CellData::F64(give_simulated_sample(1.0, 1.0)))
             }
 
             Task::TakeQuantizedSample => {

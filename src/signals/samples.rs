@@ -26,9 +26,33 @@ mod tests {
     }
 
     #[test]
-    fn test_zero_sine() {
+    fn test_midpoint_sine() {
         let sample = give_simulated_sample(0.0, 1.0);
         assert!(sample == 0.0);
+    }
+
+    #[test]
+    fn test_peak_sine() {
+        let sample = give_simulated_sample(0.25, 1.0);
+        assert!(sample == 1.0);
+    }
+
+    #[test]
+    fn test_crossing_zero_sine() {
+        let sample = give_simulated_sample(0.5, 1.0);
+        assert!(sample <= 0.1 && sample >= 0.0);
+    }
+
+    #[test]
+    fn test_trough_sine() {
+        let sample = give_simulated_sample(0.75, 1.0);
+        assert!(sample == -1.0);
+    }
+
+    #[test]
+    fn test_full_cycle_sine() {
+        let sample = give_simulated_sample(1.0, 1.0);
+        assert!(sample >= -0.1 && sample <= 0.0);
     }
 
 } 
