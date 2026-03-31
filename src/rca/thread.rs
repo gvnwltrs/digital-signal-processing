@@ -73,17 +73,6 @@ impl ProgramThread {
         match self {
 
             ProgramThread::Main { counter, tasks , handoff } => {
-                // if *counter >= tasks.len() {
-                //     let activity = ActivityInfo {
-                //         description: String::new(),
-                //     };
-
-                //     return Ok(Effect {
-                //         activity,
-                //         handoff,
-                //         finished: true,
-                //     });
-                // }
 
                 let activity = ActivityInfo {
                     description: format!("{:#?}", tasks[*counter].task),
