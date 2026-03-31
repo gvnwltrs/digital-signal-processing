@@ -110,13 +110,6 @@ impl ProgramThread {
     }
 
     pub fn access_handoff(&self, _finished: bool) -> &CellData {
-        // if finished {
-        //     match self {
-        //         ProgramThread::Main { handoff, .. } => handoff,
-        //     }
-        // } else {
-        //     &CellData::None
-        // }
         match self {
             ProgramThread::Main { handoff, .. } => handoff,
         }
